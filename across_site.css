@@ -1,0 +1,18 @@
+﻿body {
+    margin: 0px;
+}
+
+#site_header{
+    display: flex;
+    background-color:lightskyblue;
+    font-family: "monaco","Lucida Console",monospace;
+    font-weight:bold;
+    height: 100px;
+    align-content:center;
+}
+
+#site_header h1 {
+    margin:0px;
+    padding-left:1em;
+}
+
