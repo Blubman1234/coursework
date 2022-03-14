@@ -1,18 +1,36 @@
-﻿body {
-    margin: 0px;
+﻿body{
+    margin:0px;
 }
 
-#site_header{
-    display: flex;
-    background-color:lightskyblue;
+#site_header {
+    background-color: lightskyblue;
     font-family: "monaco","Lucida Console",monospace;
-    font-weight:bold;
-    height: 100px;
-    align-content:center;
+    font-size:30px;
+    padding:1em;
 }
 
 #site_header h1 {
-    margin:0px;
-    padding-left:1em;
+    margin:inherit;
 }
 
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    background-color: #567085;
+}
+
+.nav_link{
+    padding:0.5em 1.5em;
+    border:solid 1px black;
+    text-decoration: none;
+    color:black
+}
+
+.nav_link:hover {
+    background-color: #487396;
+}
+
+main{
+    padding:30px 20px;
+}
