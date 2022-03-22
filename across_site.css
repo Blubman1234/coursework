@@ -34,6 +34,9 @@ main{
     padding:50px;
 }
 
+.sub_heading{
+    font-size:28px;
+}
 p{
-    font-size:18px
+    font-size:22px;
 }
