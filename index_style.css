@@ -1,0 +1,22 @@
+﻿#what_are_CRT_SRT {
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:flex-start;
+    align-content:center;
+}
+
+#what_are_CRT_SRT article {
+    width: 700px;
+    padding-right:100px
+}
+
+#what_are_CRT_SRT img {
+    margin:auto;
+}
+
+#about_the_site{
+    border-top:solid 2px black;
+    text-align:center;
+    width:80%;
+    margin: 0 auto;
+}
