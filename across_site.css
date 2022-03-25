@@ -46,3 +46,8 @@ p{
     font-family:"Arial",'Trebuchet MS',sans-serif
 }
 
+@media all and (max-width:800px){
+    #site_header h1{
+        text-align:center;
+    }
+}
