@@ -4,13 +4,13 @@
 
 #site_header {
     background-color: lightskyblue;
-    font-family: "monaco","Lucida Console",monospace;
+    font-family: "Arial Black","Lucida Console",monospace;
     font-size:30px;
     padding:1em;
 }
 
 #site_header h1 {
-    margin:inherit;
+    margin:0px;
 }
 
 nav {
@@ -23,7 +23,10 @@ nav {
 .nav_link{
     padding:0.5em 1.5em;
     text-decoration: none;
-    color:black
+    color:black;
+    font-size:20px;
+    font-family:"Verdana","Arial",sans-serif
+
 }
 
 .nav_link:hover {
@@ -37,6 +40,9 @@ main{
 .sub_heading{
     font-size:28px;
 }
+
 p{
     font-size:22px;
+    font-family:"Arial",'Trebuchet MS',sans-serif
 }
+
