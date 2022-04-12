@@ -69,7 +69,7 @@ async function display_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, te
 	//create srt symbol and insert it hidden into the test window
 	const testWindow = document.getElementById("test_window");
 	const srtSymbol = document.createElement("img");
-	srtSymbol.src = "./images/SRT_symbol.PNG";
+	srtSymbol.src = "./images/SRT_symbol.png";
 	srtSymbol.style.display = "none";
 	testWindow.appendChild(srtSymbol);
 
