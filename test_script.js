@@ -1,6 +1,6 @@
 /*test_script.js created:28/03/22*/
 
-document.getElementById("start_SRT_button").addEventListener("click", SRT_test);
+document.getElementById("start_SRT_button").addEventListener("click", srt_test);
 
 /*this function takes the length of the test in milliseconds and will return 
 an object containing test start time and end time*/
@@ -10,12 +10,14 @@ function Test_times(testLength){
 	this.endTime = currTime + testLength;
 }
 
+
 //this function returns an integer between min and max (not including max)
 function calc_rand_int(min, max){
 	let randInt = ((max - min) * Math.random()) + min;
 	randInt = Math.floor(randInt); // rounds to an integer and keeps randInt below max
 	return randInt;
 }
+
 
 /*this function calculates the times that the test symbols wait before appearing during the test.
 the wait times will be random but in total will be less than the test length.
@@ -37,14 +39,17 @@ function get_symbol_wait_times(symbolHoldTime, testLength){
 	return symbolWaitTimes;
 }
 
+
 //this function removes the start button
 function remove_start_button(buttonId){
 	document.getElementById(buttonId).style.display = "none";
 }
 
+
 function reinsert_start_button(buttonId){
 	document.getElementById(buttonId).style.display = "block";
 }
+
 
 /*this function will make exectution of program stop for number specified milliseconds.
 because it is an async function it functions it is used in must also be async.
@@ -55,6 +60,7 @@ async function sleep(milliseconds){
 	});
 	let contin = await promise;
 }
+
 
 //this function displays the test symbol/s and records the users clicks when reacting to them
 async function display_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, testEnd){
@@ -95,19 +101,38 @@ async function display_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, te
 	return reactionTimes ;
 }
 
-//this function calculates the mean average of the array of numbers put in
+
+//this function calculates the mean average of the array of numbers input
 function calc_average(num_array){
 	const numCount = num_array.length;
 	let total = 0;
 	for (number of num_array){
 		total += number;
 	}
-	const average = total / numCount;
+	const average = Math.round(total / numCount);
 	return average;
 }
 
-async function SRT_test(){
-	const testLength = 30000;
+//this function adds the users SRT test result to local storage
+function save_srt_result(meanSrtTime){
+	const srtResultsKey = "srtResults";
+	const storedResultsString = localStorage[srtResultsKey];
+	let storedResults = []
+	//if results are already stored store them in StoredResults else continue
+	try{
+		storedResults = JSON.parse(storedResultsString);
+	}
+	//log syntax error and continue
+	catch(syntaxError){console.log(syntaxError.message)}
+	//add current results to stored results and then save to localStorage
+	const updatedResults = storedResults.concat(meanSrtTime);
+	const updatedResultsJson = JSON.stringify(updatedResults);
+	localStorage.setItem(srtResultsKey, updatedResultsJson);
+
+}
+
+async function srt_test(){
+	const testLength = 10000;
 	const symbolHoldTime = 500;
 	const testTimes = new Test_times(testLength);
 	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime,testLength);
@@ -116,6 +141,6 @@ async function SRT_test(){
 	const meanReactionTime = calc_average(reactionTimes);
 	console.log(meanReactionTime);
 	console.log(reactionTimes);
-	reinsert_start_button("start_SRT_button")
-
+	reinsert_start_button("start_SRT_button");
+	save_srt_result(meanReactionTime);
 }
