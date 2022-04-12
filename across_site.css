@@ -57,6 +57,12 @@ p{
     text-align: center;
 }
 
+#page_title {
+    font-size: 50px;
+    font-family: arial black;
+    text-decoration: underline;
+}
+
 @media all and (max-width:800px){
     #site_header h1{
         text-align:center;
