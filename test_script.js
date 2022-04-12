@@ -81,10 +81,10 @@ async function display_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, te
 			}
 		});
 		//wait till next symbol or test end
-		try{
+		if ((i + 1) < symbolWaitTimes.length){
 			await sleep(symbolWaitTimes[i+1]);
 		}
-		catch(err){
+		else{
 			await sleep(testEnd - symbolDisplayTime);
 		}
 		//check to see if user clicked
