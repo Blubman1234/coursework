@@ -46,6 +46,17 @@ p{
     font-family:"Arial",'Trebuchet MS',sans-serif
 }
 
+.link_buttons {
+    margin: 50px auto;
+    border-radius: 25px;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    padding: 30px 45px;
+    font-family: "Verdana","Arial","sans-serif";
+    text-align: center;
+}
+
 @media all and (max-width:800px){
     #site_header h1{
         text-align:center;
