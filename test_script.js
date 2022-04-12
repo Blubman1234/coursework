@@ -132,6 +132,7 @@ function save_srt_result(meanSrtTime){
 }
 
 async function srt_test(){
+	const resultUrl = location.hostname = "/SRT_result.html"
 	const testLength = 10000;
 	const symbolHoldTime = 500;
 	const testTimes = new Test_times(testLength);
@@ -143,4 +144,6 @@ async function srt_test(){
 	console.log(reactionTimes);
 	reinsert_start_button("start_SRT_button");
 	save_srt_result(meanReactionTime);
+	//redirect to result page 
+	location.href = resultUrl;
 }
