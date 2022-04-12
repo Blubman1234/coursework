@@ -74,11 +74,12 @@ async function display_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, te
 		setTimeout(function(){srtSymbol.style.display = "none";}, symbolHoldTime);	//asyncronously wait for symbolHoldTime then stop displaying test symbol
 		const symbolDisplayTime = Date.now();
 		var clickTime = 0										//clicktime is defined as var so it does not go out of scope
-		function get_click_time(){
-			clickTime = Date.now;
-			testWindow.removeEventListener("click", get_click_time());
+		//start listening for user clicks, after encountering a click remove event listener
+		testWindow.addEventListener("click", function(){
+			if (clickTime === 0){
+				clickTime = Date.now();
 			}
-		testWindow.addEventListener("click", get_click_time());
+		});
 		//wait till next symbol or test end
 		try{
 			await sleep(symbolWaitTimes[i+1]);
