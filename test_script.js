@@ -132,7 +132,7 @@ function save_srt_result(meanSrtTime){
 }
 
 async function srt_test(){
-	const resultUrl = location.hostname = "/SRT_result.html"
+	const resultUrl = "srt_result.html"
 	const testLength = 10000;
 	const symbolHoldTime = 500;
 	const testTimes = new Test_times(testLength);
