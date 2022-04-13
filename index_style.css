@@ -27,12 +27,6 @@
     
 }
 
-
-
-.test_buttons:hover{
-    background-color:darkblue;
-}
-
 @media all and (max-width:800px){
     #what_are_CRT_SRT article {
         text-align: center
