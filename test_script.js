@@ -1,6 +1,11 @@
 /*test_script.js created:28/03/22*/
+try{
+	document.getElementById("start_SRT_button").addEventListener("click", srt_test);
+}
+catch(TypeError){
+	document.getElementById("start_CRT_button").addEventListener("click", srt_test);
+}
 
-document.getElementById("start_SRT_button").addEventListener("click", srt_test);
 
 /*this function take a time in milliseconds and will output the date time when that time has passed*/
 function get_time_from_now(milliseconds){
