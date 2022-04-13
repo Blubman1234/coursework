@@ -18,6 +18,5 @@
 
 #button_container {
     display: flex;
-    font-size: 30px;
     justify-content: space-around;
 }
