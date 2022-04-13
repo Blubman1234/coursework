@@ -14,7 +14,7 @@ function display_attempt_number(srtResults){
 //displays the most recent srt time on the page
 function display_srt_time(srtResults){
 	const reactionTime = srtResults[srtResults.length - 1];
-	document.getElementById("srt_time").innerHTML = "SRT Time " + reactionTime + "ms";
+	document.getElementById("srt_time").innerHTML = "SRT Time <br>" + reactionTime + "ms";
 }
 function main() {
 	const srtResults = get_srt_results("srtResults");
