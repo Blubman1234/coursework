@@ -16,7 +16,7 @@
     font-weight: 700;
 }
 
-#button_container {
+#buttons_container {
     display: flex;
     justify-content: space-around;
 }
