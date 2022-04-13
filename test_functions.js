@@ -1,15 +1,16 @@
-/*test_script.js created:28/03/22*/
+/*test_functions.js created:28/03/22*/
+//contains functions required for the execution of the scripts crt_script.js and srt_script.js
 
-document.getElementById("start_SRT_button").addEventListener("click", srt_test);
 
-/*this function takes the length of the test in milliseconds and will return 
-an object containing test start time and end time*/
-function Test_times(testLength){
-	let currTime = Date.now();
-	this.startTime = currTime;
-	this.endTime = currTime + testLength;
+
+
+
+/*returns the date object for the time however many miliseconds input from now*/
+function get_time_from_now(milliseconds){
+	const currTime = Date.now();
+	const targetTime = currTime + milliseconds;
+	return targetTime;
 }
-
 
 //this function returns an integer between min and max (not including max)
 function calc_rand_int(min, max){
@@ -17,7 +18,6 @@ function calc_rand_int(min, max){
 	randInt = Math.floor(randInt); // rounds to an integer and keeps randInt below max
 	return randInt;
 }
-
 
 /*this function calculates the times that the test symbols wait before appearing during the test.
 the wait times will be random but in total will be less than the test length.
@@ -111,39 +111,4 @@ function calc_average(num_array){
 	}
 	const average = Math.round(total / numCount);
 	return average;
-}
-
-//this function adds the users SRT test result to local storage
-function save_srt_result(meanSrtTime){
-	const srtResultsKey = "srtResults";
-	const storedResultsString = localStorage[srtResultsKey];
-	let storedResults = []
-	//if results are already stored store them in StoredResults else continue
-	try{
-		storedResults = JSON.parse(storedResultsString);
-	}
-	//log syntax error and continue
-	catch(syntaxError){console.log(syntaxError.message)}
-	//add current results to stored results and then save to localStorage
-	const updatedResults = storedResults.concat(meanSrtTime);
-	const updatedResultsJson = JSON.stringify(updatedResults);
-	localStorage.setItem(srtResultsKey, updatedResultsJson);
-
-}
-
-async function srt_test(){
-	const resultUrl = "srt_result.html"
-	const testLength = 10000;
-	const symbolHoldTime = 500;
-	const testTimes = new Test_times(testLength);
-	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime,testLength);
-	remove_start_button("start_SRT_button");
-	const reactionTimes =await display_symbols_record_clicks(symbolWaitTimes,symbolHoldTime);
-	const meanReactionTime = calc_average(reactionTimes);
-	console.log(meanReactionTime);
-	console.log(reactionTimes);
-	reinsert_start_button("start_SRT_button");
-	save_srt_result(meanReactionTime);
-	//redirect to result page 
-	location.href = resultUrl;
 }
