@@ -2,11 +2,15 @@
     margin:0px;
 }
 
+#home_link{
+    text-decoration:none;
+}
 #site_header {
     background-color: lightskyblue;
     font-family: "Arial Black","Lucida Console",monospace;
-    font-size:30px;
-    padding:1em;
+    font-size: 30px;
+    padding: 1em;
+    color: black;
 }
 
 #site_header h1 {
