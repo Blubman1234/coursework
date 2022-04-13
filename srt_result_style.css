@@ -1,0 +1,23 @@
+﻿section{
+    margin: 50px;
+}
+
+#attempt_header {
+    font-size: 30px;
+    color: dimgray;
+    font-family: Tahoma, sans-serif;
+}
+
+#srt_time {
+    text-align: center;
+    color: #bd4005f0;
+    font-size: 60px;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+
+#button_container {
+    display: flex;
+    font-size: 30px;
+    justify-content: space-around;
+}
