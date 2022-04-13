@@ -2,12 +2,11 @@
 
 document.getElementById("start_SRT_button").addEventListener("click", srt_test);
 
-/*this function takes the length of the test in milliseconds and will return 
-an object containing test start time and end time*/
-function Test_times(testLength){
+/*this function take a time in milliseconds and will output the date time when that time has passed*/
+function get_time_from_now(milliseconds){
 	let currTime = Date.now();
-	this.startTime = currTime;
-	this.endTime = currTime + testLength;
+	const endTime = currTime + testLength;
+	return endTime;
 }
 
 
@@ -135,10 +134,10 @@ async function srt_test(){
 	const resultUrl = "srt_result.html"
 	const testLength = 10000;
 	const symbolHoldTime = 500;
-	const testTimes = new Test_times(testLength);
+	const endTime = get_time_from_now(testLength);
 	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime,testLength);
 	remove_start_button("start_SRT_button");
-	const reactionTimes =await display_symbols_record_clicks(symbolWaitTimes,symbolHoldTime);
+	const reactionTimes =await display_symbols_record_clicks(symbolWaitTimes,symbolHoldTime,endTime);
 	const meanReactionTime = calc_average(reactionTimes);
 	console.log(meanReactionTime);
 	console.log(reactionTimes);
