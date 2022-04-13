@@ -44,12 +44,6 @@ function remove_start_button(buttonId){
 	document.getElementById(buttonId).style.display = "none";
 }
 
-
-function reinsert_start_button(buttonId){
-	document.getElementById(buttonId).style.display = "block";
-}
-
-
 /*this function will make exectution of program stop for number specified milliseconds.
 because it is an async function it functions it is used in must also be async.
 because it works by resolving promises it must be used along with the await command e.g. await sleep(milliseconds)*/
@@ -139,9 +133,6 @@ async function srt_test(){
 	remove_start_button("start_SRT_button");
 	const reactionTimes =await display_symbols_record_clicks(symbolWaitTimes,symbolHoldTime,endTime);
 	const meanReactionTime = calc_average(reactionTimes);
-	console.log(meanReactionTime);
-	console.log(reactionTimes);
-	reinsert_start_button("start_SRT_button");
 	save_srt_result(meanReactionTime);
 	//redirect to result page 
 	location.href = resultUrl;
