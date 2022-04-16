@@ -62,7 +62,7 @@ async function sleep(milliseconds){
 
 
 //this function displays the test symbol/s and records the users clicks when reacting to them
-async function display_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, testEnd){
+async function display_srt_symbols_record_clicks(symbolWaitTimes, symbolHoldTime, testEnd){
 	const reactionTimes = [];
 	
 	//create srt symbol and insert it hidden into the test window
@@ -173,21 +173,32 @@ the symbols will appear in a random order but the target symbol (the one the use
 the target symbol is the symbol with the first id in symbolIds e.g. symbolIds[0]*/
 function create_crt_symbol_order(symbolIds,numAppearances){
 	const appearanceOrder = [];
+	const targetSymbolIndexes = [];
+	const numTargetSymbols = Math.round(numAppearances * 0.4);
+	//loop for 40% number of appearances and create the indexes for the target symbol
+	for (let i = 0; i < numTargetSymbols; i++){
+		//calculate a unique target index
+		do{
+			var targetIndex = calc_rand_int(0, numAppearances);
+		} while (targetSymbolIndexes.includes(targetIndex))
+		
+		targetSymbolIndexes.push(targetIndex);
+	}
 	for (let i = 0; i < numAppearances; i++){
-		let randNum = calc_rand_int(1,6);
-		//40% chance for target int
-		if (randNum <=2){
+		//if current index is in target indexes add target to appearenceOrder
+		if (targetSymbolIndexes.includes(i)){
 			appearanceOrder.push(symbolIds[0]);
 		}
-		//if not target int select random other symbol
-		else{
-			randNum = calc_rand_int(1, symbolIds.length - 1);
+		else {
+			//add a random non-target symbol to appearenceOrder
+			let randNum = calc_rand_int(1, symbolIds.length);
 			appearanceOrder.push(symbolIds[randNum]);
 		}
 	}
 	return appearanceOrder;
-
 }
+
+function 
 function crt_test(){
 	const testLength = 30000;
 	const symbolHoldTime = 500;
