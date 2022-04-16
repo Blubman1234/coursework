@@ -155,7 +155,7 @@ function create_crt_symbols(testWindowId,letters, colours){
 		for (let colour of colours){
 			let symbolElement = document.createElement("p");
 			let symbolLetter = document.createTextNode(letter);
-			let symbolId = "symbol" + symbolNum;
+			let symbolId = "sym" + symbolNum;
 			symbolIds.push(symbolId);
 			symbolElement.appendChild(symbolLetter);
 			symbolElement.id = symbolId;
@@ -168,10 +168,36 @@ function create_crt_symbols(testWindowId,letters, colours){
 	}
 	return symbolIds;
 }
+/*this function creates an array made of the symbol ids in the order that they will appear
+the symbols will appear in a random order but the target symbol (the one the user must left click) will appear approx 40% of the time
+the target symbol is the symbol with the first id in symbolIds e.g. symbolIds[0]*/
+function create_crt_symbol_order(symbolIds,numAppearances){
+	const appearanceOrder = [];
+	for (let i = 0; i < numAppearances; i++){
+		let randNum = calc_rand_int(1,6);
+		//40% chance for target int
+		if (randNum <=2){
+			appearanceOrder.push(symbolIds[0]);
+		}
+		//if not target int select random other symbol
+		else{
+			randNum = calc_rand_int(1, symbolIds.length - 1);
+			appearanceOrder.push(symbolIds[randNum]);
+		}
+	}
+	return appearanceOrder;
 
+}
 function crt_test(){
-	const testLetters = ["F","P"];
+	const testLength = 30000;
+	const symbolHoldTime = 500;
+	const testLetters = ["F","P"];  
 	const testColours = ["red","green"];
+	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime, testLength);
 	const symbolIds = create_crt_symbols("test_window",testLetters,testColours);
+	const symbolDisplayOrder = create_crt_symbol_order(symbolIds, symbolWaitTimes.length);
 	remove_start_button("start_CRT_button");
+	console.log("symbol wait times =" + symbolWaitTimes);
+	console.log("symbol ids =" + symbolIds);
+	console.log("symbol display order =" + symbolDisplayOrder);
 }
