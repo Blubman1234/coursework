@@ -159,7 +159,7 @@ function create_crt_symbols(testWindowId,letters, colours){
 			symbolIds.push(symbolId);
 			symbolElement.appendChild(symbolLetter);
 			symbolElement.id = symbolId;
-			symbolElement.class = "crt_symbol";
+			symbolElement.className = "crt_symbol";
 			symbolElement.style.color = colour;
 			symbolElement.style.display = "none";
 			testWindow.appendChild(symbolElement);
@@ -173,4 +173,5 @@ function crt_test(){
 	const testLetters = ["F","P"];
 	const testColours = ["red","green"];
 	const symbolIds = create_crt_symbols("test_window",testLetters,testColours);
+	remove_start_button("start_CRT_button");
 }
