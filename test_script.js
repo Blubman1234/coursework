@@ -1,16 +1,17 @@
 /*test_script.js created:28/03/22*/
+
 try{
 	document.getElementById("start_SRT_button").addEventListener("click", srt_test);
 }
 catch(TypeError){
-	document.getElementById("start_CRT_button").addEventListener("click", srt_test);
+	document.getElementById("start_CRT_button").addEventListener("click", crt_test);
 }
 
 
 /*this function take a time in milliseconds and will output the date time when that time has passed*/
 function get_time_from_now(milliseconds){
 	let currTime = Date.now();
-	const endTime = currTime + testLength;
+	const endTime = currTime + milliseconds;
 	return endTime;
 }
 
@@ -141,4 +142,34 @@ async function srt_test(){
 	save_srt_result(meanReactionTime);
 	//redirect to result page 
 	location.href = resultUrl;
+}
+
+/*this function will create the crt symbols used in the crt test and display them as hidden elements
+takes two arrays of letters and colours to be used in the test and gives them each a numbered id e.g symbol1,symbol2
+outputs an array of the symbols ids*/
+function create_crt_symbols(testWindowId,letters, colours){
+	const testWindow = document.getElementById(testWindowId);
+	var symbolNum = 0;
+	const symbolIds = [];
+	for (let letter of letters){
+		for (let colour of colours){
+			let symbolElement = document.createElement("p");
+			let symbolLetter = document.createTextNode(letter);
+			let symbolId = "symbol" + symbolNum;
+			symbolIds.push(symbolId);
+			symbolElement.appendChild(symbolLetter);
+			symbolElement.id = symbolId;
+			symbolElement.style.color = colour;
+			symbolElement.style.display = "none";
+			testWindow.appendChild(symbolElement);
+			symbolNum += 1;
+		}
+	}
+	return symbolIds;
+}
+
+function crt_test(){
+	const testLetters = ["F","P"];
+	const testColours = ["red","green"];
+	const symbolIds = create_crt_symbols("test_window",testLetters,testColours);
 }
