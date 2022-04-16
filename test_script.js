@@ -146,7 +146,7 @@ async function srt_test(){
 
 /*this function will create the crt symbols used in the crt test and display them as hidden elements
 takes two arrays of letters and colours to be used in the test and gives them each a numbered id e.g symbol1,symbol2
-outputs an array of the symbols ids*/
+outputs an array of the symbols ids, gives each symbol class crt_symbol for styling in css*/
 function create_crt_symbols(testWindowId,letters, colours){
 	const testWindow = document.getElementById(testWindowId);
 	var symbolNum = 0;
@@ -159,6 +159,7 @@ function create_crt_symbols(testWindowId,letters, colours){
 			symbolIds.push(symbolId);
 			symbolElement.appendChild(symbolLetter);
 			symbolElement.id = symbolId;
+			symbolElement.class = "crt_symbol";
 			symbolElement.style.color = colour;
 			symbolElement.style.display = "none";
 			testWindow.appendChild(symbolElement);
