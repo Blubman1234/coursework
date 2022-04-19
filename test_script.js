@@ -137,7 +137,7 @@ async function srt_test(){
 	const endTime = get_time_from_now(testLength);
 	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime,testLength);
 	remove_start_button("start_SRT_button");
-	const reactionTimes =await display_symbols_record_clicks(symbolWaitTimes,symbolHoldTime,endTime);
+	const reactionTimes =await display_srt_symbols_record_clicks(symbolWaitTimes,symbolHoldTime,endTime);
 	const meanReactionTime = calc_average(reactionTimes);
 	save_srt_result(meanReactionTime);
 	//redirect to result page 
@@ -198,7 +198,7 @@ function create_crt_symbol_order(symbolIds,numAppearances){
 	return appearanceOrder;
 }
 
-function 
+
 function crt_test(){
 	const testLength = 30000;
 	const symbolHoldTime = 500;
