@@ -198,16 +198,26 @@ function create_crt_symbol_order(symbolIds,numAppearances){
 	return appearanceOrder;
 }
 
+async function display_crt_symbols(symbolWaitTimes,symbolsOrder, symbolHoldTime){
+	for(let i = 0; i < symbolsOrder.length; i++){
+		let currSymbol = document.getElementById(symbolsOrder[i]);
+		await sleep(symbolWaitTimes[i]);
+		currSymbol.style.display = "block";			//could create seperate function for displaying one symbol and use for both srt and crt test
+		await sleep(symbolHoldTime);
+		currSymbol.style.display = "none";
+	}
+}
 
-function crt_test(){
+async function crt_test(){
 	const testLength = 30000;
 	const symbolHoldTime = 500;
-	const testLetters = ["F","P"];  
-	const testColours = ["red","green"];
+	const testLetters = ["F","P","B"];  
+	const testColours = ["red","green","blue"];
 	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime, testLength);
 	const symbolIds = create_crt_symbols("test_window",testLetters,testColours);
 	const symbolDisplayOrder = create_crt_symbol_order(symbolIds, symbolWaitTimes.length);
 	remove_start_button("start_CRT_button");
+	display_crt_symbols(symbolWaitTimes, symbolDisplayOrder, symbolHoldTime);
 	console.log("symbol wait times =" + symbolWaitTimes);
 	console.log("symbol ids =" + symbolIds);
 	console.log("symbol display order =" + symbolDisplayOrder);
