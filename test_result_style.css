@@ -8,12 +8,14 @@
     font-family: Tahoma, sans-serif;
 }
 
-#srt_time {
-    text-align: center;
+.result_data{
     color: #bd4005f0;
     font-size: 60px;
     font-family: Arial, sans-serif;
     font-weight: 700;
+}
+#srt_time {
+    text-align: center;
 }
 
 #buttons_container {
