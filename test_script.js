@@ -127,7 +127,6 @@ function save_srt_result(meanSrtTime){
 	const updatedResults = storedResults.concat(meanSrtTime);
 	const updatedResultsJson = JSON.stringify(updatedResults);
 	localStorage.setItem(srtResultsKey, updatedResultsJson);
-
 }
 
 async function srt_test(){
@@ -255,9 +254,37 @@ async function display_crt_symbols_record_clicks(symbolWaitTimes,symbolsOrder, s
 	}
 	return {reactionTimes, correctClicks};
 }
- 
 
+//returns the percentage that targetNum takes up from the total. returns as int
+function calc_percentage(targetNum, total){
+	let percentage = (targetNum / total) * 1000;
+	percentage = Math.round(percentage);
+	return percentage;
+}
+
+
+//this function adds the users CRT test result to local storage
+function save_crt_result(meanCrtTime, accuracyPercentage){
+	//creates object resultObj to hold users current crt results
+	const resultObj = {reactionTime: meanCrtTime, accuracy: accuracyPercentage};
+	const crtResultsKey = "crtResults";
+	const storedResultsString = localStorage[crtResultsKey];
+	let storedResults = []
+	//if results are already stored store them in StoredResults else continue
+	try{
+		storedResults = JSON.parse(storedResultsString);
+	}
+	//log syntax error and continue
+	catch(syntaxError){console.log(syntaxError.message)}
+	//add current results to stored results and then save to localStorage
+	const updatedResults = storedResults.concat(resultObj);
+	const updatedResultsJson = JSON.stringify(updatedResults);
+	localStorage.setItem(crtResultsKey, updatedResultsJson);
+}
+
+//runs the crt test
 async function crt_test(){
+	const resultUrl = "crt_result.html";
 	const testLength = 30000;
 	const symbolHoldTime = 500;
 	const testLetters = ["F","P","B"];  
@@ -268,9 +295,8 @@ async function crt_test(){
 	remove_start_button("start_CRT_button");
 	const testEnd = get_time_from_now(testLength);
 	const { reactionTimes, correctClicks } = await display_crt_symbols_record_clicks(symbolWaitTimes, symbolDisplayOrder, symbolHoldTime, testEnd);
-	console.log("symbol wait times =" + symbolWaitTimes);
-	console.log("symbol ids =" + symbolIds);
-	console.log("symbol display order =" + symbolDisplayOrder);
-	console.log("reaction times = "+ reactionTimes);
-	console.log("num correct clicks = "+ correctClicks);
+	const meanReactionTime = calc_average(reactionTimes);
+	const accuracyPercent = calc_percentage(correctClicks, reactionTimes.length);
+	save_crt_result(meanReactionTime, accuracyPercent);
+	location.href = resultUrl;
 }
