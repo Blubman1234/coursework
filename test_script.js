@@ -257,7 +257,7 @@ async function display_crt_symbols_record_clicks(symbolWaitTimes,symbolsOrder, s
 
 //returns the percentage that targetNum takes up from the total. returns as int
 function calc_percentage(targetNum, total){
-	let percentage = (targetNum / total) * 1000;
+	let percentage = (targetNum / total) * 100;
 	percentage = Math.round(percentage);
 	return percentage;
 }
