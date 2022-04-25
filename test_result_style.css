@@ -2,21 +2,27 @@
     margin: 50px;
 }
 
+
 #attempt_header {
     font-size: 30px;
     color: dimgray;
     font-family: Tahoma, sans-serif;
 }
 
+#crt_result_container{
+    display:flex;
+    flex-flow:row wrap;
+    text-align:center;
+    justify-content:space-evenly;
+}
 .result_data{
     color: #bd4005f0;
     font-size: 60px;
     font-family: Arial, sans-serif;
     font-weight: 700;
+    text-align:center;
 }
-#srt_time {
-    text-align: center;
-}
+
 
 #buttons_container {
     display: flex;
