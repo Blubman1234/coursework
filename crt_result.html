@@ -5,6 +5,7 @@
     <title>Reaction Tester - CRT result</title>
     <link rel="stylesheet" href="across_site.css" />
     <link rel="stylesheet" href="test_result_style.css" />
+    <link rel="stylesheet" href="warning_message_style.css" />
 </head>
 <body>
     <a id="home_link" href="index.html">
@@ -32,6 +33,14 @@
                 <p class="result_data" id="crt_time">CRT Time ???</p>
                 <p class="result_data" id="crt_accuracy">Accuracy ???</p>
             </div>
+        </section>
+
+        <section id="warning_message">
+            <header>
+                <h3 id="warning_header">WARNING</h3>
+            </header>
+            <p>If choice accuracy is below 80% the CRT reaction time may not be fully accurate.<br /> Do you wish to accept the results of this test</p>
+            <button class="link_buttons" id="accept_result_button">yes</button>
         </section>
 
         <div id="buttons_container">

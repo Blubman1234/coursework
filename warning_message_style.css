@@ -1,0 +1,16 @@
+﻿#warning_message{
+    text-align:center;
+    color:darkred;
+    border:3px solid red;
+    padding:10px;
+    display:none;
+}
+#warning_message p {
+    font-size:30px
+}
+
+#warning_header{
+    font-size:50px;
+    text-decoration:underline;
+
+}
