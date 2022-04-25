@@ -198,15 +198,64 @@ function create_crt_symbol_order(symbolIds,numAppearances){
 	return appearanceOrder;
 }
 
-async function display_crt_symbols(symbolWaitTimes,symbolsOrder, symbolHoldTime){
-	for(let i = 0; i < symbolsOrder.length; i++){
+/*displays crt test symbols according to their wait times and records the users reaction times to clicking them
+and the number of clicks the user got correct symbols with id "sym0" should be left clicked and others should be right clicked returns an object of
+an array of reaction times and an integer of correctClicks*/
+async function display_crt_symbols_record_clicks(symbolWaitTimes,symbolsOrder, symbolHoldTime, testEnd){
+	const reactionTimes = [];
+	var correctClicks = 0;
+	const testWindow = document.getElementById("test_window");
+	//wait for first symbol
+	await sleep(symbolWaitTimes[0]);
+	
+	//disable right clicks from showing context menu
+	testWindow.addEventListener("contextmenu", function(event){event.preventDefault();});
+
+	//loop for each symbol in symbolsOrder
+	for (let i = 0; i < symbolsOrder.length; i++){
+		//display current symbol
 		let currSymbol = document.getElementById(symbolsOrder[i]);
-		await sleep(symbolWaitTimes[i]);
-		currSymbol.style.display = "block";			//could create seperate function for displaying one symbol and use for both srt and crt test
-		await sleep(symbolHoldTime);
-		currSymbol.style.display = "none";
+		currSymbol.style.display = "block";
+		//hide symbol after hold time 
+		setTimeout(function(){currSymbol.style.display = "none";}, symbolHoldTime);
+		let displayTime = Date.now();
+		var clickTime = 0;
+		var reactionTime = 0;
+
+		let listenerController = new AbortController();
+		//create event listener to record click data
+		testWindow.addEventListener("mousedown",function(event){
+			//ensure event only fires on first click
+			if (clickTime == 0){
+				//record click time data
+				clickTime = Date.now()
+				reactionTime = clickTime - displayTime;
+				reactionTimes.push(reactionTime);
+				
+				//record click accuraccy
+				if (currSymbol.id == "sym0" && event.button == 0){
+					correctClicks += 1;
+				}
+				else if (currSymbol.id != "sym0" && event.button == 2){
+					correctClicks +=1;
+				}
+			}
+		//add abort signal to listener
+		}, {signal:listenerController.signal});
+
+		//wait for next symbol or end of test
+		if((i + 1) < symbolWaitTimes.length){
+			await sleep(symbolWaitTimes[i + 1]);
+		}
+		else {
+			await sleep(testEnd - displayTime);
+		}
+		//abort listener for current symbol
+		listenerController.abort();
 	}
+	return {reactionTimes, correctClicks};
 }
+ 
 
 async function crt_test(){
 	const testLength = 30000;
@@ -217,8 +266,11 @@ async function crt_test(){
 	const symbolIds = create_crt_symbols("test_window",testLetters,testColours);
 	const symbolDisplayOrder = create_crt_symbol_order(symbolIds, symbolWaitTimes.length);
 	remove_start_button("start_CRT_button");
-	display_crt_symbols(symbolWaitTimes, symbolDisplayOrder, symbolHoldTime);
+	const testEnd = get_time_from_now(testLength);
+	const { reactionTimes, correctClicks } = await display_crt_symbols_record_clicks(symbolWaitTimes, symbolDisplayOrder, symbolHoldTime, testEnd);
 	console.log("symbol wait times =" + symbolWaitTimes);
 	console.log("symbol ids =" + symbolIds);
 	console.log("symbol display order =" + symbolDisplayOrder);
+	console.log("reaction times = "+ reactionTimes);
+	console.log("num correct clicks = "+ correctClicks);
 }
