@@ -31,7 +31,7 @@ function display_crt_time(currCrtResult){
 //display percentage of clicks correct on page
 function display_crt_accuracy(currCrtResult){
 	const accuracy = currCrtResult.accuracy
-	document.getElementById("crt_accuracy").innerHTML = "Accuracy <br>%"+ accuracy;
+	document.getElementById("crt_accuracy").innerHTML = "Accuracy <br>"+ accuracy +"%";
 }
 
 function display_crt_results(){

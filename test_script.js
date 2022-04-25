@@ -131,7 +131,7 @@ function save_srt_result(meanSrtTime){
 
 async function srt_test(){
 	const resultUrl = "srt_result.html"
-	const testLength = 10000;
+	const testLength = 15000;
 	const symbolHoldTime = 500;
 	const endTime = get_time_from_now(testLength);
 	const symbolWaitTimes = get_symbol_wait_times(symbolHoldTime,testLength);
