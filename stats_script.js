@@ -66,30 +66,38 @@ function get_top_results(numResults, results){
 	}
 	return lowestResults;
 }
-
-//displays the lowest reaction times for both CRT and SRT tests
-function display_top_results(){
+//returns two arrays of reaction times for both the srt and crt test
+function get_result_times(){
 	const crtResults = get_test_results("crtResults");
 	const srtTimes = get_test_results("srtResults");
 	const crtTimes = get_crt_times(crtResults);
-	//defining function for creating lists of top results
-	function create_top_result_list(asideId,noResultMessageId, resultTimes){
-		if (resultTimes!= undefined){
-			const topResults = get_top_results(3,resultTimes)
-			const topResultsLen = topResults.length;
-			const topResultsList = document.createElement("ol");
-			document.getElementById(noResultMessageId).remove();
-			document.getElementById(asideId).appendChild(topResultsList)
-			for(let i = 0; i < topResultsLen; i++){
-				let result = document.createElement("li");
-				result.innerHTML="Attempt #"+topResults[i].attemptNum+" - "+topResults[i].reactionTime+"ms";
-				topResultsList.appendChild(result);
-			}
-		}
-	}
-
-	create_top_result_list("top_crt_times","no_crt_message",crtTimes);
-	create_top_result_list("top_srt_times","no_srt_message",srtTimes);
+	return {srtTimes, crtTimes}
 }
 
-display_top_results();
+
+
+//defining function for creating lists of top results for tests
+function display_top_results(asideId,noResultMessageId, resultTimes){
+	if (resultTimes!= undefined){
+		const topResults = get_top_results(3,resultTimes)
+		const topResultsLen = topResults.length;
+		const topResultsList = document.createElement("ol");
+		document.getElementById(noResultMessageId).remove();
+		document.getElementById(asideId).appendChild(topResultsList)
+		for(let i = 0; i < topResultsLen; i++){
+			let result = document.createElement("li");
+			result.innerHTML="Attempt #"+topResults[i].attemptNum+" - "+topResults[i].reactionTime+"ms";
+			topResultsList.appendChild(result);
+		}
+	}
+}
+
+
+function main(){
+	const {srtTimes, crtTimes} = get_result_times()
+	display_top_results("top_crt_times","no_crt_message",crtTimes);
+	display_top_results("top_srt_times","no_srt_message",srtTimes);
+}
+
+main();
+
