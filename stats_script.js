@@ -54,8 +54,9 @@ this array is ordered from shortest time to longest*/
 function get_top_results(numResults, results){
 	//make clone of results array so function will not effect orginal array
 	const resultsClone = results.slice();
+	const resultsCloneLen = resultsClone.length;
 	const lowestResults = []
-	for(let i = 0; i < numResults; i++){
+	for(let i = 0; i < numResults && i < resultsCloneLen; i++){
 		//find current min time and add to lowest results
 		const {minNum, index} = find_min(resultsClone);
 		const currAttemptNum = index + 1;
