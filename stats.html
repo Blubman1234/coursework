@@ -6,23 +6,42 @@
 </head>
 
 <body>
-    <a id="home_link" href="index.html">
-        <header id="site_header">
-            <h1>Reaction Tester</h1>
-        </header>
-    </a>
-    <nav>
-        <a href="srt_test.html" class="nav_link">SRT test</a>
-        <a href="crt_test.html" class="nav_link">CRT test</a>
-        <a href="stats.html" class="nav_link">Stats</a>
-    </nav>
+    <header>
+        <a id="home_link" href="index.html">
+            <header id="site_header">
+                <h1>Reaction Tester</h1>
+            </header>
+        </a>
+        <nav>
+            <a href="srt_test.html" class="nav_link">SRT test</a>
+            <a href="crt_test.html" class="nav_link">CRT test</a>
+            <a href="stats.html" class="nav_link">Stats</a>
+        </nav>
+    </header>
+    
 
     <main>
-
         <header>
             <h2 id="page_title">Statistics</h2>
         </header>
 
+        <section>
+            <canvas id="crt_reaction_chart"></canvas>
+            <h3>CRT Results</h3>
+            <aside id="top_crt_times">
+                <h4>Top CRT Times</h4>
+                    <p id="no_crt_message">No times recorded yet, go take the CRT test!</p>
+            </aside>
+        </section>
+
+        <section>
+            <h3>SRT Results</h3>
+            <aside id="top_srt_times"">
+                <h4>Top SRT Times</h4>
+                    <p id="no_srt_message">No times recorded yet, go take the SRT test!</p>
+            </aside>
+        </section>
     </main>
 </body>
+<script src="stats_script.js"></script>
 </html>
