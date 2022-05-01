@@ -1,0 +1,30 @@
+﻿
+#instruction_emphasis {
+    color: red;
+    font-weight: 700;
+}
+
+.crt_symbol {
+    font-size: 200px;
+}
+
+
+#test_instructions{
+    display:flex;
+    align-items:center;
+}
+
+#test_instructions aside figure{
+    display:flex;
+    flex-flow:row nowrap;
+    align-items:center;
+}
+
+figcaption{
+    font-size:18px;
+    font-family:"Arial"
+}
+
+img{
+    height:150px;
+}
