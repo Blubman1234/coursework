@@ -83,6 +83,7 @@ function display_top_results(asideId,noResultMessageId, resultTimes){
 			const topResults = get_top_results(3,resultTimes)
 			const topResultsLen = topResults.length;
 			const topResultsList = document.createElement("ol");
+			topResultsList.style.listStylePosition = "inside";
 			document.getElementById(noResultMessageId).remove();
 			document.getElementById(asideId).appendChild(topResultsList)
 			for(let i = 0; i < topResultsLen; i++){
