@@ -71,40 +71,127 @@ function get_result_times(){
 	const crtResults = get_test_results("crtResults");
 	const srtTimes = get_test_results("srtResults");
 	const crtTimes = get_crt_times(crtResults);
-	return {srtTimes, crtTimes}
+	return [srtTimes, crtTimes]
 }
 
 
 
 //defining function for creating lists of top results for tests
 function display_top_results(asideId,noResultMessageId, resultTimes){
-	if (resultTimes!= undefined){
-		const topResults = get_top_results(3,resultTimes)
-		const topResultsLen = topResults.length;
-		const topResultsList = document.createElement("ol");
-		document.getElementById(noResultMessageId).remove();
-		document.getElementById(asideId).appendChild(topResultsList)
-		for(let i = 0; i < topResultsLen; i++){
-			let result = document.createElement("li");
-			result.innerHTML="Attempt #"+topResults[i].attemptNum+" - "+topResults[i].reactionTime+"ms";
-			topResultsList.appendChild(result);
+	if (resultTimes != undefined){
+		if (resultTimes.length > 0){
+			const topResults = get_top_results(3,resultTimes)
+			const topResultsLen = topResults.length;
+			const topResultsList = document.createElement("ol");
+			document.getElementById(noResultMessageId).remove();
+			document.getElementById(asideId).appendChild(topResultsList)
+			for(let i = 0; i < topResultsLen; i++){
+				let result = document.createElement("li");
+				result.innerHTML="Attempt #"+topResults[i].attemptNum+" - "+topResults[i].reactionTime+"ms";
+				topResultsList.appendChild(result);
+			}
 		}
+		
 	}
 }
 
+//returns array of numbers from min to max
+function create_range(min,max){
+	const output = [];
+	for (let i = min; i <= max; i++){
+		output.push(i);
+	}
+	return output;
+}
 
 function main(){
-	const {srtTimes, crtTimes} = get_result_times()
+	const [srtTimes, crtTimes] = get_result_times()
 	display_top_results("top_crt_times","no_crt_message",crtTimes);
 	display_top_results("top_srt_times","no_srt_message",srtTimes);
-	console.log(crtAttemptNums)
+	const crtAttemptNums = create_range(1,crtTimes.length);
+	const srtAttemptNums = create_range(1,srtTimes.length);
 
 	//display charts
-	let crtChart = document.getElementById("crt_reaction_chart");
-	crtChart = new Chart(crtChart,{});
+	
+	//change font size for all text in charts
+	Chart.defaults.font.size = 18;
+	new Chart("crt_reaction_chart", {
+		type: "line",
+		data:  {
+			labels: crtAttemptNums,
+			datasets:[{
+				backgroundColor: "blue",
+				borderColor: "lightblue",
+				data:crtTimes
+			}]
+		},
+		options:{
+			plugins:{
+				legend:{display: false}
+			},
+			scales:{
+				y:{
+					grace: "50%" ,
+					ticks:{
+						callback: function(time){
+							return time + "ms";
+						}
+					},
+					title:{
+						display: true,
+						text: "Reaction Time",
+						padding:10,
+					},
+				},
+				x:{
+					title:{
+						display:true,
+						text: "Attempt No.",
+						padding:10
+					}
+				}
+			}
+		}
+	});
 
-	let srtChart = document.getElementById("srt_reaction_chart");
-	srtChart = new Chart(document.getElementById("srt_reaction_chart"),{});
+	new Chart("srt_reaction_chart",{
+		type: "line",
+		data:  {
+			labels: srtAttemptNums,
+			datasets:[{
+				backgroundColor: "blue",
+				borderColor: "lightblue",
+				data:srtTimes
+			}]
+		},
+		options:{
+			plugins:{
+				legend:{display: false}
+			},
+			scales:{
+				y:{
+					grace: "50%" ,
+					ticks:{
+						callback: function(time){
+							return time + "ms";
+						}
+					},
+					title:{
+						display: true,
+						text: "Reaction Time",
+						padding:10,
+					},
+				},
+				x:{
+					title:{
+						display:true,
+						text: "Attempt No.",
+						padding:10
+					}
+				}
+			}
+		}
+	});
 }
 
 main();
