@@ -97,6 +97,14 @@ function main(){
 	const {srtTimes, crtTimes} = get_result_times()
 	display_top_results("top_crt_times","no_crt_message",crtTimes);
 	display_top_results("top_srt_times","no_srt_message",srtTimes);
+	console.log(crtAttemptNums)
+
+	//display charts
+	let crtChart = document.getElementById("crt_reaction_chart");
+	crtChart = new Chart(crtChart,{});
+
+	let srtChart = document.getElementById("srt_reaction_chart");
+	srtChart = new Chart(document.getElementById("srt_reaction_chart"),{});
 }
 
 main();

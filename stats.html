@@ -3,6 +3,7 @@
 <head>
     <title>Reaction Tester - Stats</title>
     <link rel="stylesheet" href="across_site.css" />
+    <link rel="stylesheet" href="stats_style.css" />
 </head>
 
 <body>
@@ -26,8 +27,8 @@
         </header>
 
         <section>
-            <canvas id="crt_reaction_chart"></canvas>
             <h3>CRT Results</h3>
+            <canvas class="reaction_chart" id="crt_reaction_chart"></canvas>
             <aside id="top_crt_times">
                 <h4>Top CRT Times</h4>
                     <p id="no_crt_message">No times recorded yet, go take the CRT test!</p>
@@ -36,12 +37,14 @@
 
         <section>
             <h3>SRT Results</h3>
-            <aside id="top_srt_times"">
+            <canvas class="reaction_chart" id="srt_reaction_chart"></canvas>
+            <aside id="top_srt_times">
                 <h4>Top SRT Times</h4>
-                    <p id="no_srt_message">No times recorded yet, go take the SRT test!</p>
+                <p id="no_srt_message">No times recorded yet, go take the SRT test!</p>
             </aside>
         </section>
     </main>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="stats_script.js"></script>
 </html>
