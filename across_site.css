@@ -8,13 +8,13 @@
 #site_header {
     background-color: lightskyblue;
     font-family: "Arial Black","Lucida Console",monospace;
-    font-size: 30px;
-    padding: 1em;
+    font-size: 60px;
+    padding: 0 30px;
     color: black;
-}
-
-#site_header h1 {
-    margin:0px;
+    margin:0;
+    height:145px;
+    display:flex;
+    align-items:center;
 }
 
 nav {
@@ -42,7 +42,7 @@ main{
 }
 
 .sub_heading{
-    font-size:28px;
+    font-size:42px;
 }
 
 p{

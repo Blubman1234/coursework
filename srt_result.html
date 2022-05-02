@@ -7,32 +7,29 @@
     <link rel="stylesheet" href="test_result_style.css" />
 </head>
 <body>
-    <a id ="home_link" href="index.html">
-        <header id="site_header">
-            <h1>Reaction Tester</h1>
-        </header>
-    </a>
-    <nav>
-        <a href="srt_test.html" class="nav_link">SRT test</a>
-        <a href="crt_test.html" class="nav_link">CRT test</a>
-        <a href="stats.html" class="nav_link">Stats</a>
-    </nav>
+    <header>
+        <a id="home_link" href="index.html">
+            <h1 id="site_header">Reaction Tester</h1>
+        </a>
+        <nav>
+            <a href="srt_test.html" class="nav_link">SRT test</a>
+            <a href="crt_test.html" class="nav_link">CRT test</a>
+            <a href="stats.html" class="nav_link">Stats</a>
+        </nav>
+    </header>
 
     <main>
-        <header>
-            <h2 id="page_title">SRT test - Results</h2>
-        </header>
+        <h2 id="page_title">SRT test - Results</h2>
+
         <section>
-            <header>
-                <h3 id ="attempt_header">Attempt number - ??</h3>
-            </header>
+             <h3 id ="attempt_header">Attempt number - ??</h3>
              <p class="result_data" id="srt_time">SRT Time ???</p>
         </section>
-        <div id="buttons_container">
+        <section id="buttons_container">
             <a class="link_buttons" href="srt_test.html">Try Again</a>
             <a class="link_buttons" href="crt_test.html">CRT Test</a>
             <a class="link_buttons" href="stats.html">See Stats</a>
-        </div>
+        </section>
     </main>
 <script src = "test_result_script.js"> </script>
 </body>

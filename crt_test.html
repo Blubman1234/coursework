@@ -9,22 +9,20 @@
 </head>
 
 <body>
-
-    <a id="home_link" href="index.html">
-        <header id="site_header">
-            <h1>Reaction Tester</h1>
-        </header>
-    </a>
-    <nav>
-        <a href="srt_test.html" class="nav_link">SRT test</a>
-        <a href="crt_test.html" class="nav_link">CRT test</a>
-        <a href="stats.html" class="nav_link">Stats</a>
-    </nav>
+    <header>
+        <a id="home_link" href="index.html">
+            <h1 id="site_header">Reaction Tester</h1>
+        </a>
+        <nav>
+            <a href="srt_test.html" class="nav_link">SRT test</a>
+            <a href="crt_test.html" class="nav_link">CRT test</a>
+            <a href="stats.html" class="nav_link">Stats</a>
+        </nav>
+    </header>
+    
 
     <main>
-        <header>
-            <h2 id="page_title">CRT test</h2>
-        </header>
+        <h2 id="page_title">CRT test</h2>
 
         <div id="test_window">
             <button class="start_button" id="start_CRT_button">start</button>
@@ -32,9 +30,7 @@
 
         <section id="test_instructions">
             <article>
-                <header class="sub_heading">
-                    <h3>Test Instructions</h3>
-                </header>
+                <h3 class="sub_heading">Test Instructions</h3>
                 <p>
                     The test will run for a total length of 30 seconds. During that time random letters in random colours will appear.
                     <br /><em id="instruction_emphasis">If a red F appears you must left click, if any other letter/colour combination appears you must right click</em>
@@ -50,8 +46,8 @@
                     <figcaption>- Right click</figcaption>
                 </figure>
             </aside>
-
         </section>
+
     </main>
     <script src="test_script.js"></script>
 </body>

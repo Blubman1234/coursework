@@ -8,46 +8,39 @@
     <link rel="stylesheet" href="warning_message_style.css" />
 </head>
 <body>
-    <a id="home_link" href="index.html">
-        <header id="site_header">
-            <h1>Reaction Tester</h1>
-        </header>
-    </a>
-    <nav>
-        <a href="srt_test.html" class="nav_link">SRT test</a>
-        <a href="crt_test.html" class="nav_link">CRT test</a>
-        <a href="stats.html" class="nav_link">Stats</a>
-    </nav>
+    <header>
+        <a id="home_link" href="index.html">
+            <h1 id="site_header">Reaction Tester</h1>
+        </a>
+        <nav>
+            <a href="srt_test.html" class="nav_link">SRT test</a>
+            <a href="crt_test.html" class="nav_link">CRT test</a>
+            <a href="stats.html" class="nav_link">Stats</a>
+        </nav>
+    </header>
+    
 
     <main>
-
-        <header>
-            <h2 id="page_title">CRT test - Results</h2>
-        </header>
-
+        <h2 id="page_title">CRT test - Results</h2>
         <section>
-            <header>
-                <h3 id="attempt_header">Attempt number - ??</h3>
-            </header>
+            <h3 id="attempt_header">Attempt number - ??</h3>
             <div id="crt_result_container">
-                <p class="result_data" id="crt_time">CRT Time ???</p>
-                <p class="result_data" id="crt_accuracy">Accuracy ???</p>
+                <output class="result_data" id="crt_time">CRT Time ???</output>
+                <output class="result_data" id="crt_accuracy">Accuracy ???</output>
             </div>
         </section>
 
         <section id="warning_message">
-            <header>
-                <h3 id="warning_header">WARNING</h3>
-            </header>
+            <h3 id="warning_header">WARNING</h3>
             <p>If choice accuracy is below 80% the CRT reaction time may not be fully accurate.<br /> Do you wish to accept the results of this test</p>
             <button class="link_buttons" id="accept_result_button">yes</button>
         </section>
 
-        <div id="buttons_container">
+        <section id="buttons_container">
             <a class="link_buttons" href="crt_test.html">Try Again</a>
             <a class="link_buttons" href="srt_test.html">SRT Test</a>
             <a class="link_buttons" href="stats.html">See Stats</a>
-        </div>
+        </section>
 
     </main>
     <script src="test_result_script.js"></script>

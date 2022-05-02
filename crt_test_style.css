@@ -12,6 +12,7 @@
 #test_instructions{
     display:flex;
     align-items:center;
+    justify-content:space-evenly
 }
 
 #test_instructions aside figure{

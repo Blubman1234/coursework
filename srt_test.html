@@ -5,38 +5,32 @@
     <title>Reaction Tester - SRT Test</title>
     <link rel="stylesheet" href="across_site.css" />
     <link rel="stylesheet" href="tests_style.css"/>
-    
 </head>
 
 <body>
-
-    <a id ="home_link" href="index.html">
-        <header id="site_header">
-            <h1>Reaction Tester</h1>
-        </header>
-    </a>
-    <nav>
-        <a href="srt_test.html" class="nav_link">SRT test</a>
-        <a href="crt_test.html" class="nav_link">CRT test</a>
-        <a href="stats.html" class="nav_link">Stats</a>
-    </nav>
+    <header>
+        <a id="home_link" href="index.html">
+            <h1 id="site_header">Reaction Tester</h1>
+        </a>
+        <nav>
+            <a href="srt_test.html" class="nav_link">SRT test</a>
+            <a href="crt_test.html" class="nav_link">CRT test</a>
+            <a href="stats.html" class="nav_link">Stats</a>
+        </nav>
+    </header>
 
     <main>
-        <header>
-            <h2 id="page_title">SRT test</h2>
-        </header>
+        <h2 id="page_title">SRT test</h2>
 
         <div id="test_window">
-
             <button class="start_button" id="start_SRT_button">start</button>
         </div>
 
         <section id="test_instructions">
-            <header class="sub_heading">
-                <h3>Test Instructions</h3>
-                <p>The test will run for a total length of 15 seconds. During that time a red circle will appear at random intervals. Your goal is to click as fast as you possibly can as soon as you see the red circle appear.</p>
-            </header>
+            <h3 class="sub_heading">Test Instructions</h3>
+            <p>The test will run for a total length of 15 seconds. During that time a red circle will appear at random intervals. Your goal is to click as fast as you possibly can as soon as you see the red circle appear.</p>
         </section>
+
     </main>
     <script src="test_script.js"></script>
 </body>
